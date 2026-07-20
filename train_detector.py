@@ -26,11 +26,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--name", default="rfly_uav_yolo11n")
     parser.add_argument("--device", default="0")
+    parser.add_argument(
+        "--data-root",
+        type=Path,
+        default=ROOT / "datasets" / "rfly_uav_combined",
+        help="YOLO dataset root containing images/ and labels/ train/val folders",
+    )
     return parser.parse_args()
 
 
-def write_runtime_dataset_yaml() -> Path:
-    dataset_root = (ROOT / "datasets" / "rfly_uav_combined").resolve()
+def write_runtime_dataset_yaml(dataset_root: Path) -> Path:
+    dataset_root = dataset_root.resolve()
     for relative in ("images/train", "images/val", "labels/train", "labels/val"):
         if not (dataset_root / relative).exists():
             raise FileNotFoundError(dataset_root / relative)
@@ -55,7 +61,7 @@ def main() -> int:
     if torch.cuda.is_available():
         print(f"gpu={torch.cuda.get_device_name(0)}")
 
-    data = write_runtime_dataset_yaml()
+    data = write_runtime_dataset_yaml(args.data_root)
     model = YOLO(args.model)
     model.train(
         data=str(data),
@@ -82,4 +88,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

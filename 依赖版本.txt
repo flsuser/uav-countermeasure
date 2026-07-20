@@ -1,9 +1,0 @@
-Python 3.12.10
-ultralytics 8.3.226
-torch 2.6.0+cu126
-opencv-contrib-python 5.0.0.93
-numpy
-pymavlink
-
-RflySim SDK path:
-D:\PX4PSP\RflySimAPIs\RflySimSDK

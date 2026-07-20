@@ -1,0 +1,20 @@
+{
+  "VisionSensors": [
+    {
+      "SeqID": 0,
+      "TypeID": 1,
+      "TargetCopter": 1,
+      "TargetMountType": 0,
+      "DataWidth": 640,
+      "DataHeight": 480,
+      "DataCheckFreq": 30,
+      "SendProtocol": [1, 0, 0, 0, 0, 0, 0, 0],
+      "CameraFOV": 45,
+      "EularOrQuat": 0,
+      "SensorPosXYZ": [0.5, 0, 0],
+      "SensorAngQuat": [0, 0, 0, 0],
+      "SensorAngEular": [0, 0, 0],
+      "otherParams": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+  ]
+}

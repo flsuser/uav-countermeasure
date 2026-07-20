@@ -26,12 +26,24 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("log", type=Path)
     parser.add_argument("--center-threshold", type=float, default=0.10)
+    parser.add_argument(
+        "--warmup-seconds",
+        type=float,
+        default=0.0,
+        help="exclude this many seconds from the start of the log",
+    )
     args = parser.parse_args()
 
     with args.log.resolve().open("r", encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
     if len(rows) < 2:
         raise RuntimeError("Tracking log contains fewer than two frames")
+
+    if args.warmup_seconds > 0:
+        cutoff = float(rows[0]["time_s"]) + args.warmup_seconds
+        rows = [row for row in rows if float(row["time_s"]) >= cutoff]
+        if len(rows) < 2:
+            raise RuntimeError("Warm-up exclusion leaves fewer than two frames")
 
     times = [float(row["time_s"]) for row in rows]
     states = [row["state"] for row in rows]
@@ -68,6 +80,7 @@ def main() -> int:
     total = len(rows)
     duration = times[-1] - times[0]
     print(f"log={args.log.resolve()}")
+    print(f"warmup_excluded_s={args.warmup_seconds:.2f}")
     print(f"duration_s={duration:.2f}")
     print(f"frames={total}")
     print(f"median_fps={statistics.median(fps_values):.2f}")
