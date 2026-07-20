@@ -40,7 +40,13 @@ import VisionCaptureApi
 import PX4MavCtrlV4 as PX4MavCtrl
 
 
-DEFAULT_WEIGHTS = PROJECT_DIR / "runs" / "rfly_uav_yolo11n" / "weights" / "best.pt"
+DEFAULT_WEIGHTS = (
+    PROJECT_DIR
+    / "runs"
+    / "rfly_uav_yolo11n_four_models_hardneg"
+    / "weights"
+    / "best.pt"
+)
 DEFAULT_CONFIG = PROJECT_DIR / "Config.json"
 OBSERVER_ID = 1
 TARGET_ID = 2

@@ -1,0 +1,25 @@
+# Generated datasets and experiment outputs
+datasets/
+runs/
+
+# Local Python environments and caches
+.venv/
+.runtime_cache/
+.cache/
+__pycache__/
+*.py[cod]
+
+# Generated media, telemetry, archives, and local backups
+*.csv
+*.jpg
+*.jpeg
+*.png
+*.zip
+*.bak
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Ultralytics/
