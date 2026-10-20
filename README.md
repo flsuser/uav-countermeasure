@@ -1,5 +1,36 @@
 # 无人机检测与追踪开发
 
+
+本项目基于 RflySim 开展无人机视觉识别与追踪研究，围绕 YOLO11n 检测、单目标追踪、短时运动预测、自适应 ROI 二次检测和双轴云台对准，构建可记录、可回看的仿真演示流程。
+
+## 运行演示
+
+两段视频来自同一批实际 RflySim 运行画面，展示不同仿真外观下的检测与追踪、目标丢失后重检、ROI 局部推理及云台控制输出。
+
+### 纯运行版 · 3分55秒
+
+1280×960，保留运行画面与程序输出，仅增加必要的文字说明。
+
+[![纯运行版动态预览 点击查看完整视频](https://github.com/flsuser/uav-countermeasure/releases/download/demo-2026-10-20/uav-demo-footage-preview.gif)](https://github.com/flsuser/uav-countermeasure/releases/download/demo-2026-10-20/uav-demo-footage-annotated.mp4)
+
+[打开视频或下载 MP4](https://github.com/flsuser/uav-countermeasure/releases/download/demo-2026-10-20/uav-demo-footage-annotated.mp4)
+
+### 完整版 · 4分23秒
+
+1920×1080，在同批运行画面基础上加入项目介绍、数据卡片、状态图例与评测说明。
+
+[![完整版动态预览 点击查看完整视频](https://github.com/flsuser/uav-countermeasure/releases/download/demo-2026-10-20/uav-demo-full-preview.gif)](https://github.com/flsuser/uav-countermeasure/releases/download/demo-2026-10-20/uav-demo-full.mp4)
+
+[打开视频或下载 MP4](https://github.com/flsuser/uav-countermeasure/releases/download/demo-2026-10-20/uav-demo-full.mp4) · [查看演示资源](https://github.com/flsuser/uav-countermeasure/releases/tag/demo-2026-10-20)
+
+演示对应 **2026-10-20 本地开发版本**，具体可用功能以仓库当前代码为准。视频保留实际运行中的检测、预测、丢失和恢复过程；状态切换不等同于每次检测均正确，也不作为 ROI 稳定提升的结论。
+
+仿真真值仅用于训练标注与评测，不参与在线检测、追踪、ROI 生成或控制决策。本次展示仅限仿真，不代表真实场景部署或实物系统验收。
+
+---
+
+以下保留原有开发说明；其中环境配置与进度描述包含早期开发记录。
+
 官方 `e8_SingleObjTracking` 的红框来自仿真真值，蓝框来自 KCF；它验证了图像和跟踪链路，但并不是自主识别。本目录的第一步是使用仿真真值自动生成 YOLO 数据集。真值仅用于训练标签和评测，最终推理不得读取目标状态。
 
 ## 1. 采集第一批数据
